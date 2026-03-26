@@ -1,0 +1,19 @@
+﻿@using Markdig
+@using worldStockLab.Web.Models
+@model Article
+
+<h2>@Model.Title</h2>
+
+<p>
+    分类：@Model.Category
+    |
+    发布时间：@Model.CreatedAt.ToString("yyyy-MM-dd")
+</p>
+
+<hr />
+
+<!-- 文章正文 -->
+<div>
+    @* @Model.Content *@
+    @Html.Raw(Markdown.ToHtml(Model.Content))
+</div>

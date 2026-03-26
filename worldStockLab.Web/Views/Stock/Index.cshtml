@@ -1,3 +1,47 @@
-﻿</>HTML
-<h2>全球股票市场</h2>
-<p>欢迎来到全球股票市场！在这里，您可以浏览和分析来自世界各地的股票数据。无论您是投资新手还是经验丰富的交易者，我们都提供了丰富的信息和工具来帮助您做出明智的投资决策。</p>
+﻿@model IEnumerable<worldStockLab.Web.Models.StockPrice>
+
+<h2>Stock Market</h2>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>股票代码 Symbol</th>
+            <th>股票价格 Price</th>
+            <th>涨跌 Change</th>
+            <th>涨跌幅度 Change %</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var stock in Model)
+        {
+            <tr>
+
+                <!-- 股票代码 -->
+                <td>@stock.Symbol</td>
+
+                <!-- 当前价格 -->
+                <td>@stock.Price</td>
+
+                <!-- 涨跌 -->
+                <td>@stock.Change</td>
+
+                <!-- 涨跌幅 -->
+                <td>@stock.ChangePercent %</td>
+
+                <!-- 查看详情 -->
+                <td>
+                    <a href="/stock/detail/@stock.Symbol">
+                        View
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

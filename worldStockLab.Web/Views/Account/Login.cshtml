@@ -1,0 +1,29 @@
+﻿<h2>管理员登录</h2>
+
+<form method="post">
+    <input type="hidden" name="returnUrl" value="@ViewData["ReturnUrl"]" />
+    <div>
+
+        <label>用户名</label>
+
+        <input name="username" />
+
+    </div>
+
+    <div>
+
+        <label>密码</label>
+
+        <input type="password" name="password" />
+
+    </div>
+
+    <button type="submit">
+        登录
+    </button>
+
+</form>
+
+<p style="color:red">
+    @ViewBag.Error
+</p>

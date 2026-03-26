@@ -1,0 +1,19 @@
+﻿@model List<worldStockLab.Web.Models.StockPrice>
+
+<h2>📉 Top Losers</h2>
+
+<table class="table">
+
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.Symbol</td>
+            <td>@s.Price</td>
+
+            <td style="color:red">
+                @s.ChangePercent %
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,225 @@
+﻿@model worldStockLab.Web.Models.StockPrice
+
+@{
+    var articles = ViewBag.Articles as List<worldStockLab.Web.Models.Article>;
+    var hotStocks = ViewBag.HotStocks as List<worldStockLab.Web.Models.StockPrice>;
+
+    // =========================
+    // SEO核心：动态标题
+    // =========================
+    ViewData["Title"] = $"{Model.Symbol} Stock Price & Analysis | WorldStockLab";
+
+    // =========================
+    // SEO核心：描述
+    // =========================
+    ViewData["Description"] = $"{Model.Symbol} stock price is {Model.Price}. View charts, market trends, and analysis of {Model.Symbol}.";
+}
+
+<!-- ===== 股票头部 ===== -->
+<div class="card stock-header">
+    <div>
+        <h1>@Model.Symbol</h1>
+        <div class="price">@Model.Price</div>
+
+        <div class="@(Model.Change >= 0 ? "up" : "down")">
+            @Model.Change (@Model.ChangePercent %)
+        </div>
+    </div>
+
+    <div class="meta">
+        更新时间：@Model.UpdatedAt.ToString("MM-dd HH:mm")
+    </div>
+</div>
+<!-- ===== TradingView图表 ===== -->
+<div class="container-main">
+    <div class="chart-wrapper">
+        <div id="tradingview_chart"></div>
+    </div>
+</div>
+<!-- ===== K线 ===== -->
+<div class="card">
+  
+    <h2>@Model.Symbol Stock Analysis</h2>
+
+    <p>
+        The latest price of @Model.Symbol is @Model.Price.
+        This page provides chart, market data, and analysis for @Model.Symbol stock.
+    </p>
+</div>
+    <div id="chart"></div>
+
+
+<!-- ===== 主体布局 ===== -->
+<div class="layout">
+
+    <!-- ===== 左侧主内容 ===== -->
+    <div class="main">
+
+        <!-- 数据面板 -->
+        <div class="card">
+            <h3>📊 Key Data</h3>
+
+            <div class="data-grid">
+                <div>Price</div><div>@Model.Price</div>
+                <div>Change</div><div>@Model.Change</div>
+                <div>Change %</div><div>@Model.ChangePercent %</div>
+                <div>Updated</div><div>@Model.UpdatedAt</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="analysis">📰 Analysis</button>
+        </div>
+
+        <div id="analysis" class="tab-content active">
+            <div class="card">
+
+                @if (articles != null && articles.Count > 0)
+                {
+                    @foreach (var a in articles)
+                    {
+                        <div class="article-item">
+                            <a href="/blog/@a.Slug">@a.Title</a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>暂无相关文章</p>
+                }
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== 右侧 Sidebar ===== -->
+    <div class="sidebar">
+
+        <div class="card">
+            <h4>🔥 Hot Stocks</h4>
+
+            @if (hotStocks != null)
+            {
+                @foreach (var s in hotStocks)
+                {
+                    <div class="row">
+                        <a href="/stock/detail/@s.Symbol">@s.Symbol</a>
+                        <span class="@(s.ChangePercent >= 0 ? "up" : "down")">
+                            @s.ChangePercent %
+                        </span>
+                    </div>
+                }
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    new TradingView.widget({
+
+        container_id: "tradingview_chart",
+
+        symbol: "@ViewBag.TvSymbol",   // ⭐ 用后端处理后的
+
+        interval: "D",
+
+        timezone: "America/New_York",
+
+        theme: "dark",
+
+        style: "1",
+
+        locale: "zh_CN",
+
+        toolbar_bg: "#0f172a",
+
+        enable_publishing: false,
+
+        allow_symbol_change: true,
+
+        autosize: true,
+
+      
+
+        studies: [
+            "MACD@tv-basicstudies",
+            "RSI@tv-basicstudies"
+        ],
+
+        overrides: {
+            "paneProperties.background": "#0f172a",
+            "paneProperties.vertGridProperties.color": "#1e293b",
+            "paneProperties.horzGridProperties.color": "#1e293b",
+
+            "scalesProperties.textColor": "#94a3b8",
+
+            "mainSeriesProperties.candleStyle.upColor": "#22c55e",
+            "mainSeriesProperties.candleStyle.downColor": "#ef4444"
+        }
+
+    });
+
+});
+
+</script>
+
+<!-- ===== 样式 ===== -->
+<style>
+
+.card {
+    background: #1e293b;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    color: #e2e8f0;
+}
+
+.stock-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+}
+
+.up { color: #22c55e; }
+.down { color: #ef4444; }
+
+.article-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #334155;
+}
+
+</style>

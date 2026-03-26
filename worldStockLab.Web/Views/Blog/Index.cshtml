@@ -1,13 +1,29 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>
-        <h2>个人博客</h2>
-    </title>
+﻿@using worldStockLab.Web.Models
+@model List<Article>
 
-</head>
-<body>
-    <p>欢迎来到我的个人博客！在这里，我将分享关于全球股票市场的见解、分析和投资策略。无论您是新手还是经验丰富的投资者，我希望我的博客能够为您提供有价值的信息和启发。请随时浏览我的文章，并留下您的评论和建议！</p>
-</body>
-</html>
+
+
+<h2>博客文章</h2>
+
+@foreach (var article in Model)
+{
+    <div style="margin-bottom:20px">
+
+        <!-- 文章标题 -->
+        <h3>
+            <a href="/blog/@article.Slug">
+                @article.Title
+            </a>
+        </h3>
+
+        <!-- 摘要 -->
+        <p>@article.Summary</p>
+
+        <!-- 分类和时间 -->
+        <small>
+            分类：@article.Category |
+            发布时间：@article.CreatedAt.ToString("yyyy-MM-dd")
+        </small>
+
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿@model List<worldStockLab.Web.Models.StockPrice>
+
+<h2>📈 Top Gainers</h2>
+
+<table class="table">
+    <tr>
+        <th>Symbol</th>
+        <th>Price</th>
+        <th>Change %</th>
+    </tr>
+
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>
+                <a href="/stock/detail/@s.Symbol">
+                    @s.Symbol
+                </a>
+            </td>
+
+            <td>@s.Price</td>
+
+            <td style="color:green">
+                @s.ChangePercent %
+            </td>
+        </tr>
+    }
+</table>

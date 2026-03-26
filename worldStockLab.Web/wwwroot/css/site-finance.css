@@ -1,0 +1,401 @@
+﻿/* ============================= */
+/* Financial UI 专用样式 */
+/* ============================= */
+
+/* 全局字体压缩 */
+body {
+    font-size: 14px;
+}
+
+/* 卡片 */
+.card {
+    padding: 12px;
+    border-radius: 10px;
+}
+
+    /* 标题 */
+    .card h2 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+/* 行布局 */
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #334155;
+}
+
+    .row:last-child {
+        border-bottom: none;
+    }
+
+    /* 股票链接 */
+    .row a {
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+/* 涨跌颜色 */
+.up {
+    color: #22c55e;
+    font-size: 13px;
+}
+
+.down {
+    color: #ef4444;
+    font-size: 13px;
+}
+
+/* 分类网格 */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Explore 标签 */
+.tags a {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 4px;
+    background: #334155;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #fff;
+    text-decoration: none;
+}
+
+    /* Hover效果 */
+    .tags a:hover {
+        background: #475569;
+    }
+
+
+
+
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #111827;
+    --muted: #6b7280;
+    --primary: #87CEFA;
+    --primary-dark: #87CEFA;
+    --green: #16a34a;
+    --red: #dc2626;
+    --blue: #2563eb;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+/* ⭐ 核心：页面居中 */
+.container-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* ⭐ 布局 */
+.layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+/* ⭐ Navbar */
+.navbar {
+    background: var(--primary);
+}
+
+    .navbar a {
+        color: black !important;
+        font-weight: 500;
+    }
+
+/* ⭐ 卡片 */
+.card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+
+    .card:hover {
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+/* ⭐ 标题 */
+h1, h2, h3 {
+    font-weight: 600;
+}
+
+h3 {
+    margin-bottom: 12px;
+}
+
+/* ⭐ 股票行 */
+.stock-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+    .stock-row:last-child {
+        border-bottom: none;
+    }
+
+    .stock-row:hover {
+        background: #f9fafb;
+    }
+
+/* ⭐ 涨跌 */
+.up {
+    color: var(--green);
+    font-weight: 500;
+}
+
+.down {
+    color: var(--red);
+    font-weight: 500;
+}
+
+/* ⭐ 文章 */
+.article {
+    margin-bottom: 12px;
+}
+
+    .article a {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+        .article a:hover {
+            color: var(--blue);
+        }
+
+.meta {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* ⭐ 搜索框 */
+.nav-search input {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    width: 240px;
+}
+
+    .nav-search input:focus {
+        border-color: var(--primary);
+        outline: none;
+    }
+
+/* ⭐ 链接 */
+a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: var(--primary-dark);
+    }
+
+.ticker-bar {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 6px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    align-content: center;
+}
+
+.ticker-item {
+    margin-right: 20px;
+    font-size: 14px;
+    align-content: center;
+}
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+.index-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.index-card {
+    background: #1e293b;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+    .index-card .price {
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+.fear-value {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.fear-label {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ===== Fear & Greed ===== */
+
+.fear-card {
+    text-align: center;
+}
+
+/* 半圆 */
+.gauge {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+/* 背景 */
+.gauge-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 100px 100px 0 0;
+    background: linear-gradient(to right, blue, purple, red);
+}
+
+/* 指针 */
+.gauge-fill {
+    position: absolute;
+    width: 4px;
+    height: 100px;
+    background: black;
+    left: 50%;
+    bottom: 0;
+    transform-origin: bottom center;
+}
+
+/* 中心 */
+.gauge-center {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+}
+
+/* 数字 */
+.value {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* 标签 */
+.label {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.index-card {
+    background: #1e293b;
+    color: #e5e7eb; /* ⭐ 关键：浅色文字 */
+}
+
+    .index-card h3 {
+        color: #f9fafb;
+        font-size: 16px;
+    }
+
+    .index-card .price {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    .index-card .up {
+        color: #22c55e;
+    }
+
+    .index-card .down {
+        color: #ef4444;
+    }
+
+    .index-card .change {
+        font-size: 14px;
+        opacity: 0.8;
+    }
+
+.index-card {
+    background: #1e293b;
+    color: #e5e7eb;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* ⭐ 提升质感 */
+}
+
+.index-card {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* ⭐ 16:9 核心公式 */
+}
+
+#tradingview_chart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,141 @@
+﻿<!-- #region 新版 -->
+@model HomeViewModel
+
+<h2>📊 Market Snapshot</h2>
+
+<table class="table">
+    <tr>
+        <th>Symbol</th>
+        <th>Price</th>
+        <th>Change %</th>
+    </tr>
+
+    @foreach (var stock in Model.Stocks)
+    {
+        <tr>
+            <td>
+                <a href="/stock/detail/@stock.Symbol">
+                    @stock.Symbol    
+                </a>
+            </td>
+            <td>@stock.Price</td>
+            <td style="color:@(stock.ChangePercent >= 0 ? "green" : "red")">
+                @stock.ChangePercent %
+            </td>
+        </tr>
+    }
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+
+            <h2>📰 Latest Analysis</h2>
+
+            @foreach (var article in Model.Articles)
+            {
+                <div style="margin-bottom:15px;">
+
+                    <h4>
+                        <a href="/blog/@article.Slug">
+                            @article.Title
+                        </a>
+        
+                    </h4>
+
+                    <!-- 🔥 关键增强 -->
+                    @if (!string.IsNullOrEmpty(article.Symbol))
+                    {
+                        <a href="/stock/detail/@article.Symbol">
+                            📈 @article.Symbol
+                        </a>
+                    }
+
+                    <p>@article.Summary</p>
+
+                    <small>
+                        @article.Symbol | @article.CreatedAt.ToString("yyyy-MM-dd")
+                    </small>
+
+                </div>
+            }
+
+    
+
+        </th>
+
+        <th>
+
+            
+            <!-- 🔥 涨跌幅榜 -->
+            <h2>📈 Top Gainers</h2>
+
+            @foreach (var s in Model.Gainers)
+            {
+                <div>
+                    <a href="/stock/detail/@s.Symbol">@s.Symbol</a>
+                    <span style="color:green">@s.ChangePercent %</span>
+                </div>
+            }
+
+            <h2>📉 Top Losers</h2>
+
+            @foreach (var s in Model.Losers)
+            {
+                <div>
+                    <a href="/stock/detail/@s.Symbol">@s.Symbol</a>
+                    <span style="color:red">@s.ChangePercent %</span>
+                </div>
+            }
+
+        </th>
+        <th>
+            <h2>🔥 Hot Stocks</h2>
+
+            @foreach (var s in Model.HotStocks)
+            {
+                <div>
+                    <a href="/stock/detail/@s.Symbol">@s.Symbol</a>
+                    <span style="color:orange">👁@s.ViewCount views</span>
+                </div>
+            }
+        </th>
+    </tr>
+    
+
+}
+</table>
+<!-- #endregion -->
+
+
+@*<!-- #region 旧版 -->
+
+ @model IEnumerable<worldStockLab.Web.Models.StockPrice>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<h2>📊 Market Snapshot</h2>
+<table class="table table-bordered">
+    <tr>
+        <th></th>Symbol</th>
+        <th>Price</th>
+        <th>Change %</th>
+    </tr>
+    @foreach (var stock in Model)
+    {
+        <tr>
+        <td><a href="/stock/detail/@stock.Symbol">
+            @stock.Symbol</a>
+            </td>
+
+            <td>@stock.Price</td>
+            <td style="color:@(stock.ChangePercent>=0?"green":"red")">@stock.ChangePercent %</td>
+            </tr>
+    }
+</table>
+<!-- #endregion --> *@

@@ -1,0 +1,36 @@
+﻿@using worldStockLab.Web.Models
+@model List<Article>
+
+    <h2>博客后台管理</h2>
+
+    <a href="/Admin/Create" class="btn btn-primary">
+    发布新文章    
+    </a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th>分类</th>
+                <th>发布日期</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Model)
+            {
+                <tr>
+                    <td>@article.Title</td>
+                    <td>@article.Category</td>
+                    <td>@article.CreatedAt.ToString("yyyy-MM-dd")</td>
+                    <td>
+                    <a href="/Admin/Edit/@article.Id">编辑</a>
+
+                    |
+
+                    <a href="/Admin/Delete/@article.Id" onclick="return confirm('确定删除吗？ ')">删除</a>
+
+                    </td>
+                    </tr>
+            }
+        </tbody>
+          </table>
